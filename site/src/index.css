@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --jaguar-yellow: #F2C94C;
+  --jaguar-brown: #5A3928;
+  --jaguar-spot: #3B2A20;
+}
+
+/* Fundo com padrão sutil de manchas (usando gradientes para simplicidade) */
+body {
+  @apply min-h-screen antialiased text-gray-900;
+  background-color: var(--jaguar-yellow);
+  background-image:
+    radial-gradient(circle at 10% 20%, var(--jaguar-spot) 0.6%, transparent 0.7%),
+    radial-gradient(circle at 60% 40%, var(--jaguar-spot) 0.6%, transparent 0.7%),
+    radial-gradient(circle at 40% 75%, var(--jaguar-spot) 0.6%, transparent 0.7%);
+  background-size: 140px 140px, 180px 180px, 160px 160px;
+  background-repeat: repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Components base */
+.container {
+  @apply bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-6 max-w-4xl w-full mx-4;
+}
+
+.header-title {
+  @apply text-3xl font-extrabold text-amber-800;
+}
+
+.btn-primary {
+  @apply bg-jaguar-brown text-white px-4 py-2 rounded-md hover:opacity-90;
+}
+
+/* Puzzle enhancements */
+.tile-correct {
+  box-shadow: inset 0 0 0 4px rgba(34,197,94,0.12);
+}
+
+@keyframes swap-scale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); transform: translateY(-2px); }
+  100% { transform: scale(1); }
+}
+
+.swap-anim {
+  animation: swap-scale 300ms cubic-bezier(.22,.9,.34,1);
+}
+
+.puzzle1-tile {
+  transition: transform 220ms cubic-bezier(.22,.9,.34,1), box-shadow 220ms;
+}
+
+.puzzle1-tile:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(100, 100, 100, 0.12);
+}
+
+/* Confetti styles */
+.confetti-root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0.95; }
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10vh;
+  width: 10px;
+  height: 12px;
+  opacity: 0.95;
+  border-radius: 2px;
+  transform-origin: center;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+}
+
+/* Memory card styles */
+.memory-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.memory-card {
+  perspective: 800px;
+  height: 0;
+  padding-bottom: 100%; /* square */
+  position: relative;
+  border: none;
+  background: transparent;
+}
+
+.memory-card .card-inner {
+  position: absolute;
+  inset: 0;
+  transition: transform 400ms ease;
+  transform-style: preserve-3d;
+  border-radius: 12px;
+}
+
+.memory-card .card-front,
+.memory-card .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+.memory-card .card-front {
+  transform: rotateY(180deg);
+  background-size: cover;
+  background-position: center;
+}
+
+.memory-card .card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  background: linear-gradient(135deg, rgba(90,57,40,0.95), rgba(242,201,76,1));
+  color: white;
+}
+
+.memory-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+  outline: 3px solid rgba(34,197,94,0.18);
+  transform: scale(0.98);
+}
+
+/* Quiz styles */
+.quiz-container .option-btn {
+  text-align: left;
+  padding: 12px 14px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: transform 120ms ease, background 160ms ease;
+}
+
+/* Puzzle 4 — irregular pieces */
+.puzzle4-board {
+  position: relative;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  border-radius: 8px;
+  overflow: visible;
+}
+.puzzle4-base {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 600px;
+  height: 400px;
+  opacity: 0.08;
+}
+.puzzle4-board-wrap {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.puzzle4-board {
+  position: relative;
+  margin: 0 auto;
+}
+.puzzle4-piece {
+  position: absolute;
+  touch-action: none;
+  cursor: grab;
+}
+.puzzle4-piece:active { cursor: grabbing; }
+.puzzle4-piece .piece-inner {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+.puzzle4-piece.placed { box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+.option-btn:hover { transform: translateY(-2px); }
+
+.option-btn.correct, .option-btn.correct-reveal {
+  background: rgba(34,197,94,0.12);
+  border-color: rgba(34,197,94,0.2);
+}
+
+.option-btn.wrong {
+  background: rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.18);
+}
+
+.option-btn[disabled] { cursor: default; }
