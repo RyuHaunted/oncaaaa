@@ -128,7 +128,7 @@ export default function Puzzle1({ onSolved }: { onSolved: () => void }) {
         </div>
 
         {showImage && (
-          <div className="mt-4 p-4 rounded bg-white/80 text-center">
+          <div className="mt-4 p-4 rounded text-center" style={{ background: 'rgba(255,255,255,0.8)' }}>
             <img src={jaguar} alt="Imagem completa" className="mx-auto max-w-full" />
           </div>
         )}

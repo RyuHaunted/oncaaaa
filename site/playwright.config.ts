@@ -1,0 +1,32 @@
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  timeout: 30_000,
+  expect: {
+    timeout: 5000
+  },
+  fullyParallel: true,
+  retries: 0,
+  reporter: [['list']],
+  use: {
+    actionTimeout: 0,
+    trace: 'on-first-retry'
+  },
+  webServer: {
+    command: 'npm run dev',
+    port: 5173,
+    timeout: 120_000,
+    reuseExistingServer: true
+  },
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 5'] }
+    }
+  ]
+})
