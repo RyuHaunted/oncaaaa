@@ -6,10 +6,28 @@ body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;marg
 .puzzles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
 .puzzle{background:rgba(255,255,255,0.03);border-radius:12px;padding:1rem}
 .puzzle h2{margin:0 0 .5rem}
-.puzzle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
-.puzzle-grid .tile{background:#0b1220;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.puzzle-grid{display:grid;gap:.5rem}
+.puzzle-grid .tile{background:#0b1220;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;color:var(--muted);background-size:contain;background-position:center;background-repeat:no-repeat;cursor:pointer;border:2px solid transparent;transition:transform .15s, border-color .15s}
+.puzzle-grid .tile:focus{outline:none;box-shadow:0 0 0 3px rgba(124,58,237,0.25)}
+.puzzle-grid .tile.selected{transform:scale(1.03);border-color:#f59e0b}
+.puzzle-grid .tile.correct{border-color:#16a34a}
+.tile.swap-anim{animation:swap 300ms ease}
+@keyframes swap{0%{transform:translateY(-6px)}50%{transform:translateY(6px)}100%{transform:translateY(0)}}
+
 @media (max-width:420px){
-  .puzzle-grid{grid-template-columns:repeat(2,1fr)}
   .puzzle-grid .tile{height:64px}
 }
+
+.puzzle-controls{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem}
+.puzzle-actions{margin-top:0.75rem;display:flex;gap:0.5rem}
+.btn{padding:.5rem .75rem;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent),#5b21b6);color:white}
+.p1-full{margin-top:.75rem;padding:.5rem;background:rgba(255,255,255,0.06);border-radius:8px;text-align:center}
+.p1-full img{max-width:100%;height:auto}
+.p1-message{margin-top:.5rem;color:#a3e635;font-weight:700}
+
+/* Confetti */
+.confetti-container{position:relative;pointer-events:none;height:0}
+.confetti-piece{position:absolute;width:10px;height:14px;opacity:0.95;transform-origin:center;will-change:transform,opacity}
+@keyframes conf-fall{to{transform:translateY(400px) rotate(540deg);opacity:0}}
+
 .site-footer{text-align:center;padding:1rem;color:var(--muted)}

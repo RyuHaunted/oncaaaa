@@ -15,8 +15,37 @@
   <main class="container">
     <section id="puzzles" class="puzzles">
       <article class="puzzle" id="puzzle1">
-        <h2>Puzzle 1</h2>
-        <div class="puzzle-grid"></div>
+        <h2>Puzzle 1 — Quebra-cabeça</h2>
+
+        <div class="puzzle-controls">
+          <label>Tamanho:
+            <select id="p1-size">
+              <option value="3">3 x 3 (Fácil)</option>
+              <option value="4">4 x 4 (Médio)</option>
+              <option value="5">5 x 5 (Difícil)</option>
+            </select>
+          </label>
+
+          <label style="margin-left:1rem">
+            <input type="checkbox" id="p1-show-image" /> Mostrar imagem
+          </label>
+
+          <div style="margin-left:auto" class="hint">Dica: clique em uma peça e depois em outra para trocar</div>
+        </div>
+
+        <div id="puzzle1-grid" class="puzzle-grid" aria-label="Puzzle 1 grid"></div>
+
+        <div class="puzzle-actions">
+          <button id="p1-shuffle" class="btn">Embaralhar</button>
+          <button id="p1-reset" class="btn">Reset (imagem completa)</button>
+        </div>
+
+        <div id="p1-full" class="p1-full" hidden>
+          <img src="assets/jaguar.svg" alt="Imagem completa" />
+        </div>
+
+        <div id="p1-message" class="p1-message" aria-live="polite"></div>
+        <div id="p1-confetti" class="confetti-container" aria-hidden="true"></div>
       </article>
 
       <article class="puzzle" id="puzzle2">
