@@ -1,13 +1,79 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>site</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oncaaaa - Versão Simples</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Oncaaaa</h1>
+    <p>Versão simples em HTML, CSS e JS</p>
+  </header>
+
+  <main class="container">
+    <section id="puzzles" class="puzzles">
+      <article class="puzzle" id="puzzle1">
+        <h2>Puzzle 1 — Quebra-cabeça</h2>
+
+        <div class="puzzle-controls">
+          <label>Tamanho:
+            <select id="p1-size">
+              <option value="3">3 x 3 (Fácil)</option>
+              <option value="4">4 x 4 (Médio)</option>
+              <option value="5">5 x 5 (Difícil)</option>
+            </select>
+          </label>
+
+          <label style="margin-left:1rem">
+            <input type="checkbox" id="p1-show-image" /> Mostrar imagem
+          </label>
+
+          <div style="margin-left:auto" class="hint">Dica: clique em uma peça e depois em outra para trocar</div>
+        </div>
+
+        <div id="puzzle1-grid" class="puzzle-grid" aria-label="Puzzle 1 grid"></div>
+
+        <div class="puzzle-actions">
+          <button id="p1-shuffle" class="btn">Embaralhar</button>
+          <button id="p1-reset" class="btn">Reset (imagem completa)</button>
+        </div>
+
+        <div id="p1-full" class="p1-full" hidden>
+          <img src="assets/jaguar.svg" alt="Imagem completa" />
+        </div>
+
+        <div id="p1-message" class="p1-message" aria-live="polite"></div>
+        <div id="p1-confetti" class="confetti-container" aria-hidden="true"></div>
+      </article>
+
+      <article class="puzzle" id="puzzle2">
+        <h2>Puzzle 2</h2>
+        <div class="puzzle-content">Conteúdo do Puzzle 2</div>
+      </article>
+
+      <article class="puzzle" id="puzzle3">
+        <h2>Puzzle 3</h2>
+        <div class="puzzle-content">Conteúdo do Puzzle 3</div>
+      </article>
+
+      <article class="puzzle" id="puzzle4">
+        <h2>Puzzle 4</h2>
+        <div class="puzzle-content">Conteúdo do Puzzle 4</div>
+      </article>
+
+      <article class="puzzle" id="puzzle5">
+        <h2>Puzzle 5</h2>
+        <div class="puzzle-content">Conteúdo do Puzzle 5</div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Feito com ❤️</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
 </html>
