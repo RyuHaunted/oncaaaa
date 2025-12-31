@@ -30,4 +30,37 @@ body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;marg
 .confetti-piece{position:absolute;width:10px;height:14px;opacity:0.95;transform-origin:center;will-change:transform,opacity}
 @keyframes conf-fall{to{transform:translateY(400px) rotate(540deg);opacity:0}}
 
+/* Memory cards */
+.memory-grid{display:grid;gap:.5rem}
+.memory-card{aspect-ratio:1/1;border-radius:8px;padding:0;border:none;cursor:pointer;background:transparent}
+.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.memory-card.flipped .card-inner{transform:rotateY(180deg)}
+.card-front, .card-back{position:absolute;inset:0;border-radius:8px;backface-visibility:hidden}
+.card-front{background-size:cover;background-position:center}
+.card-back{display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--accent),#5b21b6);color:white;transform:rotateY(180deg)}
+.memory-card.matched{outline:3px solid #16a34a}
+
+/* Quiz */
+.quiz-container .option-btn{padding:.75rem;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);text-align:left}
+.option-btn.correct{background:#dcfce7;border-color:#86efac}
+.option-btn.wrong{background:#fee2e2;border-color:#fca5a5}
+.option-btn.correct-reveal{background:#bbf7d0}
+
+/* Puzzle4 */
+.puzzle4-board-wrap{overflow:hidden}
+.puzzle4-board{position:relative;background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);border-radius:10px;overflow:visible}
+.puzzle4-base{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.puzzle4-piece{position:absolute;touch-action:none}
+.piece-inner{background-repeat:no-repeat}
+
+/* Unlocked */
+.unlocked{max-width:920px;margin:0 auto;padding:2rem;text-align:center}
+.unlocked .btn{margin-top:0.5rem}
+
+/* small screens */
+@media (max-width:520px){
+  .container{padding:0.75rem}
+  .site-header h1{font-size:1.25rem}
+}
+
 .site-footer{text-align:center;padding:1rem;color:var(--muted)}
