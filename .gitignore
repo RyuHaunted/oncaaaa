@@ -1,0 +1,30 @@
+# Node
+node_modules/
+site/node_modules/
+
+# Build outputs
+dist/
+site/dist/
+
+# Nested site folder (accidental)
+site/site/
+
+# Test artifacts
+site/test-results/
+test-results/
+
+# Installers / binaries
+*.exe
+site/*.exe
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE / system files
+.DS_Store
+.vscode/
+.idea/
+
+# Misc
+.env
