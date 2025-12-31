@@ -2,7 +2,18 @@ import React from 'react'
 
 // Simple CSS-based confetti without external libs
 export default function Confetti() {
-  const pieces = Array.from({ length: 28 })
+  const [count, setCount] = React.useState(() => (typeof window !== 'undefined' && window.innerWidth < 480 ? 12 : 28))
+
+  React.useEffect(() => {
+    function handleResize() {
+      const next = window.innerWidth < 480 ? 12 : 28
+      setCount(next)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const pieces = Array.from({ length: count })
   return (
     <div className="confetti-root pointer-events-none">
       {pieces.map((_, i) => {

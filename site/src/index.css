@@ -10,7 +10,8 @@
 
 /* Fundo com padrão sutil de manchas (usando gradientes para simplicidade) */
 body {
-  @apply min-h-screen antialiased text-gray-900;
+  @apply min-h-screen antialiased;
+  color: #111827; /* tailwind gray-900 */
   background-color: var(--jaguar-yellow);
   background-image:
     radial-gradient(circle at 10% 20%, var(--jaguar-spot) 0.6%, transparent 0.7%),
@@ -25,16 +26,33 @@ body {
 
 /* Components base */
 .container {
-  @apply bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-6 max-w-4xl w-full mx-4;
+  /* use explicit background color for Tailwind v4 compatibility */
+  background: rgba(255,255,255,0.9);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  padding: 1.5rem;
+  max-width: min(64rem, calc(100% - 2rem));
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .header-title {
-  @apply text-3xl font-extrabold text-amber-800;
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #92400E; /* amber-800 approx */
 }
 
 .btn-primary {
-  @apply bg-jaguar-brown text-white px-4 py-2 rounded-md hover:opacity-90;
+  background: var(--jaguar-brown);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: opacity 150ms ease;
 }
+.btn-primary:hover { opacity: 0.9; }
 
 /* Puzzle enhancements */
 .tile-correct {
@@ -52,12 +70,65 @@ body {
 }
 
 .puzzle1-tile {
+  display: block;
   transition: transform 220ms cubic-bezier(.22,.9,.34,1), box-shadow 220ms;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* Ensure grid rows match column sizing so tiles remain square */
+.puzzle1-grid {
+  grid-auto-rows: 1fr;
 }
 
 .puzzle1-tile:focus {
   outline: none;
   box-shadow: 0 0 0 4px rgba(100, 100, 100, 0.12);
+}
+
+/* Grid layout for puzzle1 (responsive) */
+.puzzle1-grid {
+  display: grid;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* Puzzle 4 responsive adjustments */
+.puzzle4-board-wrap {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  /* ensure the board scales down on small screens */
+}
+
+.puzzle4-board {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.puzzle4-base {
+  width: 100%;
+  height: auto;
+  opacity: 0.08;
+  max-width: 100%;
+}
+
+/* Small screen tweaks */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  .header-title {
+    font-size: 1.25rem;
+  }
+  .btn-primary {
+    padding: 0.5rem 0.75rem;
+  }
+  .memory-card .card-back {
+    font-size: 20px;
+  }
 }
 
 /* Confetti styles */

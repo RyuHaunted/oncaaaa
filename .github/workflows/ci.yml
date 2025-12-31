@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: site
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+        working-directory: site
+
+      - name: Run unit tests (Vitest)
+        run: npm run test:unit --silent
+        working-directory: site
+
+      - name: Run E2E tests (Playwright)
+        run: npm run test:e2e --silent -- --reporter=list
+        working-directory: site
+        env:
+          CI: true
